@@ -1,0 +1,25 @@
+
+# temp files
+.DS_Store
+._.DS_Store
+*.db
+
+# Build
+build
+runtime
+x64
+.vscode
+*.o
+*.user
+*.dll
+*.lib
+*.suo
+*.sdf
+*.rar
+*.pdf
+*.png
+*.jpg
+
+
+# special files
+*.tgz
