@@ -26,25 +26,25 @@ PUBLIC
 
 void uaf_basic(int random_val)
 {
-  cObj *p = MEM_NEW (cObj);
-  int i;
-    if (p == 0)
-        return;
-  
-    for (i=0; i<100; i++) {
-        // the loop ensures that this case is non trivial
-        if (random_val != 10) 
-            random_val++;
-    }
-    MEM_DELETE(p);
+	cObj *p = MEM_NEW (cObj);
+	int i;
+	if (p == 0)
+		return;
 
-    for (i=0; i<100; i++) {
-        // the loop ensures that this case is non trivial
-        if (random_val > 10) 
-            random_val--;
-    }
-    p->l = 0;  // UAF
-    return;
+	for (i=0; i<100; i++) {
+		// the loop ensures that this case is non trivial
+		if (random_val != 10)
+			random_val++;
+	}
+	MEM_DELETE(p);
+
+	for (i=0; i<100; i++) {
+		// the loop ensures that this case is non trivial
+		if (random_val > 10)
+			random_val--;
+	}
+	p->l = 0;  // UAF
+	return;
 }
 
 
@@ -61,25 +61,27 @@ void uaf_basic(int random_val)
 
 void uaf_cprop(int random_val)
 {
-  int i;
-  cObj *p = MEM_NEW (cObj);
-    if (p == 0)
-        return;
-    cObj *q = p;
-    for (i=0; i<100; i++) {
-        // the loop ensures that this case is non trivial
-        if (random_val != 10) 
-            random_val++;
-    }
-    MEM_DELETE(p);
+	int i;
+	cObj *p = MEM_NEW (cObj);
+	if (p == 0)
+		return;
 
-    for (i=0; i<100; i++) {
-        // the loop ensures that this case is non trivial
-        if (random_val > 10) 
-            random_val--;
-    }
-    q->l = 0;  // UAF
-    return;
+	cObj *q = p;
+	for (i=0; i<100; i++) {
+		// the loop ensures that this case is non trivial
+		if (random_val != 10)
+			random_val++;
+	}
+	MEM_DELETE(p);
+
+	for (i=0; i<100; i++) {
+		// the loop ensures that this case is non trivial
+		if (random_val > 10)
+			random_val--;
+	}
+
+	q->l = 0;  // UAF
+	return;
 }
 
 
